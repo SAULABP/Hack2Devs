@@ -28,8 +28,8 @@ npm run dev
 | Comando | Qué hace |
 |---------|----------|
 | `npm run dev` | Servidor de desarrollo |
-| `npm run build` | Build de producción (debe pasar sin errores) |
-| `npm run typecheck` | `tsc --noEmit` (debe pasar sin errores) |
+| `npm run build` | Build de producción  |
+| `npm run typecheck` | `tsc --noEmit`  |
 | `npm run preview` | Previsualizar el build |
 
 ## Variables de entorno
@@ -45,7 +45,7 @@ Solo `VITE_API_BASE_URL` es obligatoria. Las demás precargan el formulario de l
 
 ## Deploy
 
-Link: _(pegar aquí)_
+Link: _(por pegar)_
 
 El deploy incluye SPA rewrites (`vercel.json` / `public/_redirects`) para que abra
 directamente en cualquier ruta, incluyendo `/sectors/:id/story`.
