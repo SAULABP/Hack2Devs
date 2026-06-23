@@ -33,8 +33,8 @@ App en `http://localhost:5173`.
 | Comando | funmcion|
 |---------|----------|
 | `npm run dev` | Servidor de desarrollo |
-| `npm run build` | Build de producción (pasa sin errores) |
-| `npm run typecheck` | `tsc --noEmit` (pasa sin errores) |
+| `npm run build` | Build de producción  |
+| `npm run typecheck` | `tsc --noEmit`  |
 | `npm run preview` | Previsualizar el build |
 
 ## Variables de entorno
@@ -51,7 +51,7 @@ El password sigue el formato `Pizza-<TEAM_CODE>`.
 
 ## Deploy
 
-Link: ‹pegar URL de Vercel aquí›
+Link: ‹https://hack2-devs.vercel.app/login›
 
 El deploy incluye SPA rewrites (`vercel.json` y `public/_redirects`) para que abra
 directamente en cualquier ruta, incluyendo `/sectors/:id/story`. Verificado: abrir
