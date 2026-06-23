@@ -133,8 +133,8 @@ nunca un 404.
 ## Validación
 
 ```bash
-npm run typecheck   # sin errores
-npm run build       # sin errores
+npm run typecheck
+npm run build       
 ```
 
 Ningún `any` para respuestas de API. Sin datos hardcodeados ni paginación simulada en
