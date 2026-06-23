@@ -96,7 +96,7 @@ export interface Sector {
 
 export interface StoryStage {
   id: string;
-  stageOrder: number;
+  order: number;
   title: string;
   narrative: string;
   dominantEvent: string;
@@ -106,8 +106,16 @@ export interface StoryStage {
   progress: number;
 }
 
+// El sector dentro de story puede traer solo id/name/climate (contrato real).
+export interface StorySectorRef {
+  id: string;
+  name: string;
+  climate?: string;
+  sectorCode?: string;
+}
+
 export interface SectorStory {
-  sector: SectorRef;
+  sector: StorySectorRef;
   stages: StoryStage[];
 }
 

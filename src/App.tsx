@@ -4,7 +4,10 @@ import { ProtectedRoute } from './auth/ProtectedRoute';
 import { AppLayout } from './components/AppLayout';
 import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
-import { TropelsPage, SignalsPage, SectorsPage, SectorStoryPage } from './pages/Placeholder';
+import { TropelsPage } from './pages/TropelsPage';
+import { SignalsPage } from './pages/SignalsPage';
+import { SectorsListPage } from './pages/SectorsListPage';
+import { SectorStoryPage } from './pages/SectorStoryPage';
 
 export default function App() {
   return (
@@ -18,7 +21,7 @@ export default function App() {
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/tropels" element={<TropelsPage />} />
             <Route path="/signals" element={<SignalsPage />} />
-            <Route path="/sectors" element={<SectorsPage />} />
+            <Route path="/sectors" element={<SectorsListPage />} />
             <Route path="/sectors/:id/story" element={<SectorStoryPage />} />
           </Route>
 

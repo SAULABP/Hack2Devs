@@ -1,0 +1,89 @@
+/* Sector Story Engine — CP5
+   Estrategia de animación en capas con degradación:
+   1) CSS scroll-driven animations (animation-timeline: scroll/view) si hay soporte.
+   2) Fallback: la clase .stage-active (puesta por JS vía IntersectionObserver)
+      aplica el mismo estado final con una transición normal.
+   3) prefers-reduced-motion: se anulan TODAS las animaciones y transiciones. */
+
+.story-root {
+  --story-color: #6e7681;
+}
+
+/* Visual persistente: ocupa el lado izquierdo y queda fijo mientras se hace scroll. */
+.story-visual {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Núcleo visual que late y cambia de color según la etapa activa. */
+.story-orb {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--story-color), transparent 70%);
+  border: 1px solid var(--story-color);
+  transition: background 0.6s ease, border-color 0.6s ease, transform 0.6s ease;
+}
+
+/* Anillos concéntricos que reaccionan a la etapa. */
+.story-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--story-color);
+  opacity: 0.25;
+  transition: border-color 0.6s ease, transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Barra de progreso del recorrido, impulsada por scroll-driven animation
+   cuando hay soporte. */
+.story-progress-fill {
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: var(--story-color);
+  transition: background 0.6s ease;
+}
+
+@supports (animation-timeline: scroll()) {
+  .story-progress-fill {
+    animation: story-grow linear both;
+    animation-timeline: scroll(root block);
+  }
+  @keyframes story-grow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* Cada panel de narrativa entra suavemente al aparecer en viewport. */
+  .story-panel {
+    animation: story-fade linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+  @keyframes story-fade {
+    from { opacity: 0.15; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Fallback (sin soporte de scroll-driven): JS controla la barra por % y los
+   paneles usan .stage-active vía IntersectionObserver. */
+@supports not (animation-timeline: scroll()) {
+  .story-progress-fill { transition: transform 0.3s ease, background 0.6s ease; }
+  .story-panel { opacity: 0.4; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .story-panel.stage-active { opacity: 1; transform: translateY(0); }
+}
+
+/* El que manda sobre todo: respeto a reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .story-orb, .story-ring, .story-progress-fill, .story-panel {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
