@@ -51,7 +51,7 @@ El password sigue el formato `Pizza-<TEAM_CODE>`.
 
 ## Deploy
 
-Link: ‹https://hack2-devs.vercel.app/login›
+Link: ‹https://hack2-devs-objo.vercel.app/login›
 
 El deploy incluye SPA rewrites (`vercel.json` y `public/_redirects`) para que abra
 directamente en cualquier ruta, incluyendo `/sectors/:id/story`. Verificado: abrir
